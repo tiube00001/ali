@@ -11,11 +11,17 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'wx\controllers',
     'defaultRoute' => false,
+
+    'charset' => 'utf-8',
+    'language' => 'zh-CN',
+    'timeZone' => 'Asia/Shanghai',
+
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-wx',
+            //'csrfParam' => '_csrf-wx',
+            'enableCsrfValidation' => false,
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -33,6 +39,16 @@ return [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['info'],
+                    'categories' => ['wxNews'],
+                    'maxFileSize' => '',
+                    'logFile' => '@runtime/logs/wxNews/'.date('Y_m_d').'.log',
+                    'fileMode' => 0775,
+                    'logVars' => ['_POST', '_GET']
+
+                ]
             ],
         ],
         'errorHandler' => [
@@ -44,6 +60,14 @@ return [
             'showScriptName' => false,
             'rules' => [
             ],
+        ],
+
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=127.0.0.1;dbname=video',
+            'username' => 'root',
+            'password' => 'yu1596321',
+            'charset' => 'utf8',
         ],
 
     ],

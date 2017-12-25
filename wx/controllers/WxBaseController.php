@@ -41,4 +41,5 @@ class WxBaseController extends Controller
             ],
         ];*/
     }
+
 }
