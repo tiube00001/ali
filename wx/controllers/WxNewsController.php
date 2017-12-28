@@ -94,12 +94,22 @@ class WxNewsController extends WxBaseController
 
     public function actionTest()
     {
-        $data = Video::find()
-            ->select('url')
-            ->asArray()->column();
+        $curl = curl_init();
 
-        echo '<pre>';
-        var_dump($data);
+        phpinfo();
 
+        exit;
+        var_dump($curl);
+
+        exit;
+        $config = Yii::$app->params['wx'];
+
+        $wx = new WxAPI($config['token'], $config['encodingAesKey'], $config['appId']);
+
+        $str = '123';
+        $nonce = 'test';
+        $aaa = $wx->encryptMsg($str, time(), $nonce);
+
+        var_dump($aaa);
     }
 }
