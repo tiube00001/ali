@@ -33,26 +33,20 @@ class WxAPI
         $this->encodingAesKey = $encodingAesKey;
         $this->appId = $appId;
 
+
         //注册自动加载函数
-        /*spl_autoload_register(function($class) {
+        spl_autoload_register(function($class) {
+            $dir = dirname(dirname(__FILE__));
 
-            $match = [
-                'wx\lib\WXBizMsgCrypt' => './lib/WXBizMsgCrypt.php',
-                'wx\lib\Prpcrypt' => './lib/Prpcrypt.php',
-                'wx\lib\PKCS7Encoder' => './lib/PKCS7Encoder.php',
-                'wx\lib\ErrorCode' => './lib/ErrorCode.php',
-                'wx\lib\SHA1' => './lib/SHA1.php',
-                'wx\lib\XMLParse' => './lib/XMLParse.php'
-            ];
+            $file = $dir.'/'.str_replace('\\', '/', $class).'.php';
 
-            $file = $match[$class];
             if (is_file($file)) {
                 require $file;
             } else {
                 throw new \Exception('class missing:'.$class);
             }
 
-        });*/
+        });
 
     }
 
